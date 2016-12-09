@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin</title>
+	<style>
+	input {
+		width: 125px;
+	}		
+	body {
+		font-family: sans-serif;
+	}
+	</style>
+</head>
+<body>
+	<p>Queue Calculation</p>
+	<form method="POST" action="/admin/queuecalculation">
+		<input name="quantity" required min="1" max="100000" type="number" value=1000>
+		<button>Queue Calculation</button>
+	</form>
+</body>
+</html>

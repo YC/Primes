@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{ n }}</title>
+	<style>
+	html {
+		background-color: #FCFCFC;
+		height: 100%;
+	}
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		font-family: sans-serif;
+		display: table;
+		font-size: 0.9em;
+	}
+	body div {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	h1 {
+		font-size: 3.5em;
+	}
+	body div table, body div h1 {
+		text-align: center;
+		margin: 2vh auto;
+	}
+	tr {
+		text-align: left;
+	}
+	td, th {
+		padding: .55vh 1vw;
+	}
+	a {
+		text-decoration: none;
+
+	}
+	</style>
+</head>
+<body>
+<div>
+	<h1>{{ n }}</h1>
+	<table>
+		<tr><th>Is Prime: </th><td>{% if isPrime %}Yes{% else %}No{% endif %}</td></tr>
+		<tr><th>Previous Prime: </th><td><a href="/{{ prevPrime }}">{{ prevPrime }}</a></td></tr>
+		{% if nextPrime %}<tr><th>Next Prime: </th><td><a href="/{{ nextPrime }}">{{ nextPrime }}</a></td></tr>{% endif %}
+		<tr><th>Number of Primes: </th><td>{{ numPrimes }}</td></tr>
+		{% if isPrime %}<tr><th>Date Added: </th><td>{{ dateAdded }}</td></tr>{% endif %}
+	</table>
+</div>
+</body>
+</html>
