@@ -17,11 +17,12 @@
 		font-size: 0.9em;
 	}
 	body div {
+		padding: 0 5%;
 		display: table-cell;
 		vertical-align: middle;
 	}
 	h1 {
-		font-size: 3.5em;
+		font-size: 3.75em;
 	}
 	body div table, body div h1 {
 		text-align: center;
@@ -31,11 +32,11 @@
 		text-align: left;
 	}
 	td, th {
-		padding: .55vh 1vw;
+		word-break: keep-all;
+		padding: .55vh 1.15vw;
 	}
 	a {
 		text-decoration: none;
-
 	}
 	</style>
 </head>
@@ -44,7 +45,7 @@
 	<h1>{{ n }}</h1>
 	<table>
 		<tr><th>Is Prime: </th><td>{% if isPrime %}Yes{% else %}No{% endif %}</td></tr>
-		<tr><th>Previous Prime: </th><td><a href="/{{ prevPrime }}">{{ prevPrime }}</a></td></tr>
+		{% if prevPrime %}<tr><th>Previous Prime: </th><td><a href="/{{ prevPrime }}">{{ prevPrime }}</a></td></tr>{% endif %}
 		{% if nextPrime %}<tr><th>Next Prime: </th><td><a href="/{{ nextPrime }}">{{ nextPrime }}</a></td></tr>{% endif %}
 		<tr><th>Number of Primes: </th><td>{{ numPrimes }}</td></tr>
 		{% if isPrime %}<tr><th>Date Added: </th><td>{{ dateAdded }}</td></tr>{% endif %}
