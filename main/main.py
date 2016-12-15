@@ -13,7 +13,7 @@ class MainPage(webapp2.RequestHandler):
         # If appstat is initalised, get state and largest prime
         state = get_state()
         if state:
-            value = state.prev_prime
+            value = state.current_number
 
         # Output page
         template = JINJA_ENVIRONMENT.get_template('main/index.html')

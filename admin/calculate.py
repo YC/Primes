@@ -26,8 +26,8 @@ class CalculatePrime():
         state = self.__get_state()
 
         # Get range
-        current = state.current_number
-        new = current + quantity
+        current = state.current_number + 1
+        new = current + quantity - 1
 
         # Get bound for sieve divisors
         bound = int(floor(sqrt(new)))
@@ -36,7 +36,7 @@ class CalculatePrime():
         if bound >= state.current_number:
             self.calculate(bound - current)
             state = self.__get_state()
-            current = state.current_number
+            current = state.current_number + 1
 
         # Perform sieve (using prime numbers which are less than bound)
         d = {}
@@ -93,7 +93,7 @@ class CalculatePrime():
 
         # Update and Store State in datastore and memcache
         state.current_prime_count = number_of_primes
-        state.current_number = new + 1
+        state.current_number = new
         state.prev_prime = prev_prime
         state.put()
         memcache.set(key="state", value=state, time=3600)
@@ -130,7 +130,7 @@ class CalculatePrime():
               number_of_primes=1).put()
 
         # Return created state entity
-        return AppState(current_number=STARTING_PRIME + 1,
+        return AppState(current_number=STARTING_PRIME,
                         current_prime_count=1,
                         prev_prime=2,
                         id=DEFAULT)
