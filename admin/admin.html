@@ -9,13 +9,33 @@
 	body {
 		font-family: sans-serif;
 	}
+	p {
+		margin: 1.5vh 0;
+		font-size: .85em;
+	}
+	div, h1 {
+		margin: 3vh .75vw;
+	}
+	h1 {
+		font-weight: normal;
+	}
 	</style>
 </head>
 <body>
-	<p>Queue Calculation</p>
-	<form method="POST" action="/admin/queuecalculation">
-		<input name="quantity" required min="1" max="100000" type="number" value=1000>
-		<button>Queue Calculation</button>
-	</form>
+	<h1>Admin</h1>
+	<div>
+		<p>Queue Calculation</p>
+		<form method="POST" action="/admin/queuecalculation">
+			<input name="quantity" required min="1" max="100000" type="number" value=100000>
+			<button>Queue Calculation</button>
+		</form>
+	</div>
+	<div>
+		<p>Calculate up to</p>
+		<form method="POST" action="/admin/verifycalculation">
+			<input name="number" type="number" value={{ val }}>
+			<button>Queue Calculation</button>
+		</form>
+	</div>
 </body>
 </html>

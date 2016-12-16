@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Confirm Calculation</title>
+	<style>
+	body {
+		font-family: sans-serif;
+	}
+	p {
+		margin: 1.5vh 0;
+		font-size: .85em;
+	}
+	div, h1 {
+		margin: 3vh .75vw;
+	}
+	h1 {
+		font-weight: normal;
+	}
+	p {
+		margin: 1.25vh 0;
+	}
+	</style>
+</head>
+<body>
+	<h1>Confirm Calculation</h1>
+	<div>
+		<form method="POST" action="/admin/queuecalculation">
+			<p>Please confirm calculation quantity: {{ quantity }}</p>
+			<input type="hidden" name="quantity" value="{{ quantity }}"></>
+			<button>Confirm</button>
+		</form>
+	</div>
+</body>
+</html>

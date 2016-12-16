@@ -33,7 +33,7 @@ class CalculatePrime():
         bound = int(floor(sqrt(new)))
 
         # If necessary, compute primes which are less than bound
-        if bound >= state.current_number:
+        if bound > state.current_number:
             self.calculate(bound - current)
             state = self.__get_state()
             current = state.current_number + 1

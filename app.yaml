@@ -5,16 +5,23 @@ threadsafe: yes
 handlers:
 - url: /
   script: main.main.app
+  secure: always
 
 - url: /\d+
   script: main.displayprime.app
+  secure: always
 
 - url: /view
   script: main.displayprime.app
+  secure: always
 
 - url: /admin(/)?
-  static_files: admin/admin.html
-  upload: admin/admin.html
+  script: admin.admin.app
+  secure: always
+  login: admin
+
+- url: /admin/verifycalculation
+  script: admin.admin.app
   secure: always
   login: admin
 
