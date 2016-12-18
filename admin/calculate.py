@@ -32,18 +32,19 @@ class CalculatePrime():
         # Get bound for sieve divisors
         bound = int(floor(sqrt(new)))
 
-        # If necessary, compute primes which are less than bound
+        # If necessary, compute primes which are less or equal to bound
         if bound > state.current_number:
-            self.calculate(bound - current)
+            self.calculate(bound - current + 1)
             state = self.__get_state()
             current = state.current_number + 1
 
-        # Perform sieve (using prime numbers which are less than bound)
+        # Perform sieve (using prime numbers less than or equal to bound)
         d = {}
-        prime_entity = Prime.get_by_id(STARTING_PRIME)
-        while prime_entity:
-            # Get id (value) of Number entity
-            prime = prime_entity.key.id()
+        query = Prime.query().filter(Prime.key <= ndb.Key('Prime', bound))
+        qo = ndb.QueryOptions(keys_only=True)
+        for key in query.iter(options=qo, keys_only=True):
+            # Get value of prime
+            prime = key.id()
 
             # Store multiples of prime numbers in dictionary
             for i in range(current // prime, int(ceil(new / prime)) + 1):
@@ -53,9 +54,6 @@ class CalculatePrime():
                 product = i * prime
                 if product not in d:
                     d[product] = prime
-
-            # Get next prime
-            prime_entity = self.__get_next_prime(prime_entity, bound)
 
         # Add results to database
         prev_prime = state.prev_prime
@@ -107,14 +105,6 @@ class CalculatePrime():
         n = Prime.get_by_id(prev)
         n.next_prime = next_prime
         n.put()
-
-    def __get_next_prime(self, current, bound):
-        """Return the entity of the following prime number from datastore
-           when it's less than bound."""
-        next_prime = current.next_prime
-        if next_prime and next_prime <= bound:
-            return Prime.get_by_id(next_prime)
-        return None
 
     def __get_state(self):
         """Gets and returns the application state."""
