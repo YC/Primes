@@ -1,9 +1,12 @@
 # Primes
-A prime numbers application developed using: 
+An app which uses a sieve to calculate prime numbers.
 
 * Google App Engine Standard Environment (Python 2)
-* Cloud Datastore
-* webapp2
-* Jinja (HTML templating)
+* Cloud Datastore: stores results
+* Task Queue: queue for calculations
+* webapp2: web framework
+* Jinja: HTML templating
 
-[Demo](https://clear-aurora.appspot.com/)
+![Home](screenshots/home.png)
+![Prime](screenshots/999983.png)
+![Not prime](screenshots/100000.png)
